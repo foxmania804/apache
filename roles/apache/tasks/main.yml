@@ -1,0 +1,29 @@
+---
+# tasks file for apache
+
+- name: install apache (httpd)
+  yum:
+    name: httpd
+    state: installed
+- name: custom index.html
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+
+- name: enable apache (httpd)
+  service:
+    name: httpd
+    enabled: yes
+
+- name: Reconfgire apache port
+  template:
+    src: httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+  notify: 
+    - Restart Apache
+
+
+
+...
+
+

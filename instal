@@ -1,0 +1,25 @@
+---
+- hosts: webserver
+  tasks:
+  
+  - name: Install apache (httpd)
+    yum:
+      name: http
+      state: installed
+
+  - name: Create custom index.html
+    copy:
+       src: index.html
+       dest: /var/www/html/index.html
+
+  - name: Enable apache (httpd)
+    service:
+       name: httpd
+       enabled: yes
+ 
+  - name: start apache (httpd)
+    service:
+       name: httpd
+       state: started
+...
+

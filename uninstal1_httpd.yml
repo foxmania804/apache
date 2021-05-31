@@ -1,0 +1,25 @@
+---
+- hosts: webserver
+  tasks:
+
+   - name: custom index.html
+     file:
+       path: /var/www/html/index.html
+       state: absent
+
+   - name: Disable apache (httpd)
+     service:
+       name: httpd
+       enabled: no
+ 
+   - name: stop apache (httpd)
+     service:
+       name: httpd
+       state: stopped
+
+   - name: uninstall apache (httpd)
+     yum:
+       name: httpd
+       state: absent
+...
+
